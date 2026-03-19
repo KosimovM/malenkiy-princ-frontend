@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Header } from "@/widgets/header";
 import { Sidebar } from "@/widgets/sidebar";
 
 interface MainLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
