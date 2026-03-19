@@ -1,4 +1,5 @@
 import "./styles/globals.css";
+import React, { ReactNode } from "react";
 import type { Metadata } from "next";
 import { MainLayout } from "@/widgets/layout";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
