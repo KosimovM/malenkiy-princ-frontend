@@ -65,9 +65,10 @@ body {
   transform: translateZ(0);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Sleek Dark */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -75,12 +76,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 74, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 74, 255, 0.5);
+  background: var(--primary);
+  opacity: 0.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: block;
 }
 
 /* Ant Design Overrides */
@@ -99,15 +105,45 @@ body {
   color: rgba(255, 255, 255, 0.4) !important;
 }
 
-/* Animations */
+/* Advanced Animations */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0) rotate(0); }
+  33% { transform: translateY(-20px) rotate(2deg); }
+  66% { transform: translateY(-10px) rotate(-1deg); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes float-complex {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(10px, -20px) rotate(1deg); }
+  50% { transform: translate(-5px, -35px) rotate(-1deg); }
+  75% { transform: translate(-15px, -15px) rotate(0.5deg); }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { filter: drop-shadow(0 0 5px var(--primary)) brightness(1); }
+  50% { filter: drop-shadow(0 0 20px var(--primary)) brightness(1.2); }
+}
+
+@keyframes drift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.animate-float-slow {
+  animation: float 12s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-complex 8s ease-in-out infinite;
+}
+
+.animate-neon {
+  animation: neon-pulse 3s ease-in-out infinite;
+}
+
+.bg-drift {
+  background-size: 200% 200%;
+  animation: drift 15s linear infinite;
 }
 
 @keyframes stars {
@@ -123,6 +159,6 @@ body {
   height: 200%;
   background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat;
   z-index: -1;
-  opacity: 0.3;
-  animation: stars 100s linear infinite;
+  opacity: 0.15;
+  animation: stars 150s linear infinite;
 }
