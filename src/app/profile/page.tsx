@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { User, Shield, CreditCard, Box, Settings, MapPin, Star } from "lucide-react";
 import { Avatar, Progress } from "antd";

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ProductCard from "@/entites/product/ui/ProductCard";
 import { Sparkles, ArrowRight } from "lucide-react";

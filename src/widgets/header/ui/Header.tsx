@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Input, Badge, Avatar } from "antd";
 import { SearchIcon, Bell, ShoppingCart } from "lucide-react";

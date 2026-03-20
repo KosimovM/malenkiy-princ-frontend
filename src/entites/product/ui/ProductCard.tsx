@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { mockProductCardData } from "@/entites/product/mockData";
 import { ShoppingCart, Star, Sparkles } from "lucide-react";
