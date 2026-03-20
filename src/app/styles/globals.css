@@ -1,36 +1,123 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fafafa;
-  --foreground: #171717;
+@layer theme {
+  :root {
+    --background: #0f111a;
+    --foreground: #f8fafc;
+    --primary: #944aff;
+    --primary-foreground: #ffffff;
+    --accent: #ffcc33;
+    --card: rgba(15, 17, 26, 0.4);
+    --border: rgba(255, 255, 255, 0.1);
+    --ring: rgba(148, 74, 255, 0.5);
+  }
+
+  .dark {
+    --background: #020617;
+    --foreground: #f8fafc;
+    --primary: #944aff;
+    --primary-foreground: #ffffff;
+    --accent: #ffcc33;
+    --card: rgba(2, 6, 23, 0.6);
+    --border: rgba(255, 255, 255, 0.05);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-border-premium: var(--border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 74, 255, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 74, 255, 0.5);
+}
+
+/* Ant Design Overrides */
+.ant-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.ant-input:hover, .ant-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px var(--ring) !important;
 }
 
 .ant-input::placeholder {
-  color: #0a0a0a !important;
-  opacity: 1;
+  color: rgba(255, 255, 255, 0.4) !important;
 }
 
-.dark .ant-input::placeholder {
-  color: #fff !important;
-  opacity: 1;
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
+}
+
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat;
+  z-index: -1;
+  opacity: 0.3;
+  animation: stars 100s linear infinite;
 }

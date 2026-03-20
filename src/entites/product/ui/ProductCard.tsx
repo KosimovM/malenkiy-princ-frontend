@@ -1,42 +1,53 @@
+import React from "react";
 import { mockProductCardData } from "@/entites/product/mockData";
+import { ShoppingCart, Star } from "lucide-react";
 
 export default function ProductCard() {
-  const product = mockProductCardData;
+  const products = mockProductCardData;
 
   return (
-    <div className="w-full grid grid-cols-4 justify-baseline gap-4">
-      {product.map((product) => (
+    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 tracking-tight">
+      {products.map((product, idx) => (
         <div
-          key={product.title}
-          className="w-full h-80 bg-white group cursor-pointer flex flex-col items-center justify-center overflow-hidden rounded-lg border  hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800"
+          key={product.title + idx}
+          className="group relative glass-dark rounded-[2rem] overflow-hidden p-3 transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-primary/20 border-white/5 hover:border-primary/30"
         >
-          <img
-            alt="Image showing the thumbnail of the product"
-            decoding="async"
-            data-nimg="fill"
-            className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
-            style={{
-              position: "absolute",
-              height: "100%",
-              width: "100%",
-              left: "0",
-              top: "0",
-              right: "0",
-              bottom: "0",
-              color: "transparent",
-            }}
-            sizes="(min-width: 768px) 66vw, 100vw"
-            src={product.image}
-          />
-          <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4">
-            <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
-              <h3 className="mr-4 line-clamp-2 grow pl-2 leading-none tracking-tight">
-                {product.title}
-              </h3>
-              <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                {product.price}
-                <span className="ml-1 inline  @[275px]/label:inline">TJS</span>
-              </p>
+          {/* Image Container */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-white/5 to-white/10">
+            <img
+              alt={product.title}
+              src={product.image}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute top-4 right-4 z-10">
+              <button className="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:bg-primary transition-colors">
+                <Star size={18} fill={idx === 0 ? "white" : "none"} />
+              </button>
+            </div>
+            
+            {/* Price Tag Overlay */}
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="glass px-4 py-2 rounded-2xl flex items-center justify-between">
+                <span className="text-white font-bold text-lg">{product.price} TJS</span>
+                <button className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+                  <ShoppingCart size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="px-3 pt-5 pb-2">
+            <h3 className="text-white font-semibold text-base mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+              {product.title}
+            </h3>
+            <div className="flex items-center gap-2">
+              <div className="flex text-accent">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={12} fill="currentColor" />
+                ))}
+              </div>
+              <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Limited Edition</span>
             </div>
           </div>
         </div>

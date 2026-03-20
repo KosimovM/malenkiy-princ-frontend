@@ -1,36 +1,44 @@
-import Link from "next/link";
-import { Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import React from "react";
+import { Input, Badge, Avatar } from "antd";
+import { SearchIcon, Bell, ShoppingCart } from "lucide-react";
 
 export const Header = () => {
   return (
-    <header>
-      <nav className="w-full h-16 flex items-center justify-between space-x-8">
-        <Input
-          placeholder="Поиск по словам и переводам..."
-          prefix={<SearchOutlined className="text-gray-400 mr-1" />}
-          className="!rounded-xl"
-          allowClear
-        />
+    <header className="sticky top-4 z-40 mb-10">
+      <nav className="glass px-6 py-3 rounded-2xl flex items-center justify-between gap-8">
+        <div className="flex-1 max-w-xl">
+          <Input
+            placeholder="Поиск чудес..."
+            prefix={<SearchIcon size={18} className="text-gray-400 mr-2" />}
+            className="!rounded-xl !bg-white/5 !border-white/10 !text-white hover:!border-primary/50 focus:!border-primary"
+            allowClear
+          />
+        </div>
 
-        <Link
-          href="/login"
-          className="border border-gray-400 duration-100 rounded-sm p-3"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-4 stroke-gray-400"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+        <div className="flex items-center gap-4">
+          <button className="p-2 text-gray-400 hover:text-white transition-colors relative">
+            <Badge count={2} size="small" offset={[2, -2]}>
+              <Bell size={22} className="text-gray-400 hover:text-white" />
+            </Badge>
+          </button>
+          
+          <button className="p-2 text-gray-400 hover:text-white transition-colors">
+            <ShoppingCart size={22} />
+          </button>
+
+          <div className="h-8 w-[1px] bg-white/10 mx-2" />
+
+          <button className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <div className="text-right hidden sm:block">
+              <p className="text-xs font-semibold text-white">Дилшод С.</p>
+              <p className="text-[10px] text-gray-400">Путешественник</p>
+            </div>
+            <Avatar 
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dilshod" 
+              className="border-2 border-primary/30"
             />
-          </svg>
-        </Link>
+          </button>
+        </div>
       </nav>
     </header>
   );
