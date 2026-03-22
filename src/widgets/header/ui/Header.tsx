@@ -1,46 +1,46 @@
 "use client";
 import React from "react";
-import { Input, Badge, Avatar } from "antd";
-import { SearchIcon, Bell, ShoppingCart } from "lucide-react";
+import { Avatar, Badge, Tooltip } from "antd";
+import { MessageSquare, Bell, User, History, Settings } from "lucide-react";
 
 export const Header = () => {
   return (
-    <header className="sticky top-4 z-40 mb-10 w-full animate-in fade-in duration-500">
-      <nav className="glass px-8 py-4 rounded-[2rem] flex items-center justify-between gap-10 border border-white/10 shadow-xl shadow-black/20">
-        <div className="flex-1 max-w-2xl relative group">
-          <Input
-            placeholder="Поиск чудес во вселенной..."
-            prefix={<SearchIcon size={20} className="text-gray-400 group-focus-within:text-primary transition-colors" />}
-            className="!rounded-2xl !bg-white/5 !border-white/10 !text-white !h-12 !px-4 hover:!border-primary/50 focus:!border-primary !transition-all"
-            allowClear
-          />
+    <header className="sticky top-0 z-40 mb-6 w-full animate-in fade-in duration-500 bg-[#0d0e12]/80 backdrop-blur-xl border-b border-white/5">
+      <nav className="px-8 py-3 flex items-center justify-between gap-10">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all cursor-pointer group">
+            <span className="text-sm font-bold text-gray-300">Little Prince 1.0</span>
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_rgba(148,74,255,1)]" />
+          </div>
         </div>
 
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <button className="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all relative group">
-              <Badge count={2} size="small" offset={[2, -2]} color="var(--primary)">
-                <Bell size={24} className="group-hover:animate-bounce" />
+          <div className="flex items-center gap-3">
+            <Tooltip title="Таърих">
+              <button className="p-2 text-gray-500 hover:text-white transition-all hover:bg-white/5 rounded-xl">
+                <History size={20} />
+              </button>
+            </Tooltip>
+            <Tooltip title="Навсозиҳо">
+              <Badge dot color="var(--primary)" offset={[-2, 2]}>
+                <button className="p-2 text-gray-500 hover:text-white transition-all hover:bg-white/5 rounded-xl">
+                  <Bell size={20} />
+                </button>
               </Badge>
-            </button>
-            
-            <button className="w-12 h-12 glass rounded-2xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all group">
-              <ShoppingCart size={24} className="group-hover:scale-110 transition-transform" />
-            </button>
+            </Tooltip>
           </div>
 
-          <div className="h-10 w-[1px] bg-white/10 mx-2" />
+          <div className="h-6 w-[1px] bg-white/10" />
 
-          <button className="flex items-center gap-4 hover:bg-white/5 p-2 rounded-2xl transition-all border border-transparent hover:border-white/10 group">
-            <div className="text-right hidden md:block">
-              <p className="text-sm font-bold text-white tracking-wide">Дилшод С.</p>
-              <p className="text-[10px] text-primary font-bold uppercase tracking-widest opacity-70">Gold Traveler</p>
-            </div>
+          <button className="flex items-center gap-3 hover:bg-white/5 p-1.5 pr-4 rounded-2xl transition-all border border-transparent hover:border-white/5 group">
             <Avatar 
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dilshod" 
-              size={48}
-              className="border-2 border-primary/50 shadow-lg shadow-primary/20 ring-4 ring-white/5"
+              size={32}
+              className="border border-primary/30"
             />
+            <div className="text-left hidden md:block">
+              <p className="text-xs font-bold text-gray-300">Дилшод С.</p>
+            </div>
           </button>
         </div>
       </nav>
